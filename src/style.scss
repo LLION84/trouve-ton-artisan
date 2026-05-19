@@ -1,0 +1,590 @@
+// ========================
+// VARIABLES — Charte graphique Auvergne-Rhône-Alpes
+// ========================
+$white:     #f1f8fc;
+$blue:      #0074c7;
+$dark-blue: #00497c;
+$dark:      #384050;
+$red:       #cd2c2e;  // Accentuation uniquement
+$green:     #82b864;  // Accentuation uniquement
+
+// ========================
+// RESET & GLOBAL
+// ========================
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: "Graphik", Arial, sans-serif;
+  background-color: $white;
+  color: $dark;
+  margin: 0;
+}
+
+// Structure flex pour footer toujours en bas
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+
+h1, h2, h3, h4 {
+  color: $dark-blue;
+  margin-top: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Lien d'évitement pour accessibilité
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: $blue;
+  color: $white;
+  padding: 8px 16px;
+  border-radius: 0 0 8px 0;
+  font-weight: 600;
+  z-index: 9999;
+  transition: top 0.2s;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+// ========================
+// HEADER
+// ========================
+.header {
+  background-color: $white;
+  box-shadow: 0 2px 12px rgba($dark, 0.12);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-shrink: 0;
+}
+
+// Logo responsive
+.logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+
+  @media (min-width: 768px)  { height: 50px; }
+  @media (min-width: 992px)  { height: 60px; }
+}
+
+// Liens navigation
+.nav-link {
+  color: $dark !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 6px 12px !important;
+  border-radius: 6px;
+  transition: color 0.2s, background-color 0.2s;
+  white-space: nowrap;
+
+  &:hover, &.active {
+    color: $blue !important;
+    background-color: rgba($blue, 0.07);
+  }
+}
+
+// Bouton burger
+.navbar-toggler {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: $blue;
+  border-radius: 6px;
+  padding: 8px 10px;
+  line-height: 1;
+
+  i {
+    color: $white !important;
+    font-size: 1.4rem;
+    display: block;
+    line-height: 1;
+  }
+}
+
+// ========================
+// BARRE DE RECHERCHE
+// ========================
+
+// Wrapper desktop — prend l'espace entre logo et liens
+.search-wrapper {
+  position: relative;
+  flex: 1;
+  max-width: 480px;
+  min-width: 0;
+}
+
+// Style de la barre desktop
+.search-desktop {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1.5px rgba($blue, 0.35), 0 2px 8px rgba($blue, 0.12);
+
+  .input-group-text {
+    background-color: $blue;
+    border: none;
+    padding: 10px 14px;
+    i { color: $white; font-size: 0.9rem; }
+  }
+
+  .form-control {
+    background-color: $white;
+    border: none;
+    font-size: 0.9rem;
+    padding: 10px 14px;
+
+    &::placeholder { color: rgba($dark, 0.4); }
+    &:focus { box-shadow: none; background-color: $white; }
+  }
+}
+
+// Barre mobile sous le header
+.search-mobile {
+  border-bottom: 1px solid rgba($blue, 0.1);
+  background-color: $white;
+}
+
+// Wrapper mobile
+.search-wrapper-mobile {
+  position: relative;
+
+  .input-group {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1.5px rgba($blue, 0.35), 0 2px 8px rgba($blue, 0.12);
+  }
+
+  .input-group-text {
+    background-color: $blue;
+    border: none;
+    padding: 10px 14px;
+    i { color: $white; font-size: 0.9rem; }
+  }
+
+  .form-control {
+    background-color: $white;
+    border: none;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+
+    &::placeholder { color: rgba($dark, 0.4); }
+    &:focus { box-shadow: none; background-color: $white; }
+  }
+}
+
+// Dropdown résultats
+.search-results {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba($dark, 0.14), 0 0 0 1px rgba($blue, 0.1);
+  z-index: 300;
+  overflow: hidden;
+  animation: fadeDown 0.15s ease;
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.search-result-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba($blue, 0.06);
+  transition: background-color 0.15s;
+
+  &:last-child { border-bottom: none; }
+
+  &:hover, &:focus {
+    background-color: rgba($blue, 0.06);
+    outline: none;
+    .result-name { color: $blue; }
+  }
+
+  .result-name {
+    font-weight: 600;
+    color: $dark-blue;
+    font-size: 0.88rem;
+    transition: color 0.15s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .result-info {
+    font-size: 0.75rem;
+    color: rgba($dark, 0.5);
+    background-color: rgba($blue, 0.08);
+    padding: 2px 8px;
+    border-radius: 50px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}
+
+// ========================
+// FOOTER
+// ========================
+.footer {
+  background-color: $dark;
+  flex-shrink: 0;
+
+  .footer-address {
+    font-style: normal;
+
+    p {
+      color: rgba($white, 0.8);
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+
+      &:last-child { margin-bottom: 0; }
+    }
+
+    a {
+      color: rgba($white, 0.8);
+      &:hover { color: $blue; }
+    }
+  }
+}
+
+.footer-link {
+  color: rgba($white, 0.55);
+  font-size: 0.82rem;
+  transition: color 0.2s;
+  &:hover { color: $blue; }
+}
+
+.footer-separator {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba($blue, 0.6), transparent);
+}
+
+.footer-dot {
+  color: rgba($white, 0.25);
+  font-size: 0.82rem;
+}
+
+// ========================
+// PAGE ACCUEIL — Comment ça marche
+// ========================
+.how-it-works {
+  padding: 64px 0;
+  background-color: $white;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+
+    @media (min-width: 768px) { font-size: 2rem; }
+  }
+}
+
+.step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  height: 100%;
+  padding: 20px;
+  background-color: darken($white, 2%);
+  border-radius: 10px;
+  border: 1px solid rgba($blue, 0.2);
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba($blue, 0.1);
+  }
+
+  .step-num {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $blue;
+    line-height: 1;
+    min-width: 32px;
+    flex-shrink: 0;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: $dark;
+    margin: 0;
+    padding-top: 6px;
+    line-height: 1.5;
+  }
+}
+
+// ========================
+// PAGE ACCUEIL — Artisans du mois
+// ========================
+.top-artisans {
+  padding: 64px 0;
+  background-color: darken($white, 2%);
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+
+    @media (min-width: 768px) { font-size: 2rem; }
+  }
+}
+
+// ========================
+// CARTE ARTISAN
+// ========================
+.artisan-card {
+  background-color: $white;
+  border-radius: 10px;
+  border: 1px solid rgba($blue, 0.18);
+  box-shadow: 0 2px 8px rgba($blue, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba($blue, 0.15);
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  h2, h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: $dark;
+    margin-bottom: 4px;
+  }
+}
+
+// Lien qui entoure la carte
+.artisan-card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover { color: inherit; }
+}
+
+// Spécialité en bleu
+.artisan-specialty {
+  color: $blue !important;
+  font-weight: 500 !important;
+}
+
+// Localisation avec icône
+.artisan-location {
+  color: rgba($dark, 0.65) !important;
+  font-size: 0.82rem !important;
+}
+
+// Lien site web artisan
+.artisan-website {
+  display: inline-flex;
+  align-items: center;
+  color: $blue;
+  font-size: 0.85rem;
+  margin-top: 8px;
+
+  &:hover { color: $dark-blue; }
+}
+
+// Étoiles de notation
+.stars {
+  color: $blue;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+// ========================
+// PAGE CATÉGORIE
+// ========================
+.category-page {
+  min-height: 60vh;
+}
+
+.category-title {
+  font-size: 1.8rem;
+  margin-bottom: 4px;
+
+  @media (min-width: 768px) { font-size: 2.2rem; }
+}
+
+.category-count {
+  color: rgba($dark, 0.55);
+  font-size: 0.9rem;
+  margin-bottom: 32px;
+}
+
+// ========================
+// PAGE FICHE ARTISAN
+// ========================
+.artisan-page {
+  min-height: 60vh;
+}
+
+.artisan-name {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+// Bouton retour pill
+.btn-retour {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 20px;
+  color: $blue;
+  border: 1.5px solid $blue;
+  border-radius: 50px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  background-color: transparent;
+  transition: background-color 0.2s, color 0.2s;
+  margin-bottom: 24px;
+
+  &:hover {
+    background-color: $blue;
+    color: $white;
+  }
+}
+
+// Labels du formulaire
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: $dark;
+  margin-bottom: 4px;
+}
+
+// Champs du formulaire
+.form-control {
+  border: 1px solid rgba($blue, 0.25) !important;
+  background-color: $white !important;
+  border-radius: 8px !important;
+  font-size: 0.9rem;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($blue, 0.12) !important;
+    border-color: $blue !important;
+    background-color: $white !important;
+  }
+}
+
+// Bouton envoi
+.btn-contact {
+  background-color: $blue;
+  color: $white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+
+  &:hover { background-color: $dark-blue; }
+}
+
+// Message de confirmation envoi
+.contact-success {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background-color: rgba($green, 0.1);
+  border: 1px solid rgba($green, 0.3);
+  border-radius: 8px;
+  color: darken($green, 20%);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+// ========================
+// PAGE 404
+// ========================
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40px 16px;
+}
+
+.not-found-box {
+  background-color: $white;
+  border-radius: 16px;
+  border: 1px solid rgba($blue, 0.15);
+  box-shadow: 0 8px 32px rgba($blue, 0.1);
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 460px;
+  width: 100%;
+
+  @media (min-width: 576px) { padding: 56px 72px; }
+}
+
+.not-found-num {
+  font-size: 5rem;
+  font-weight: 700;
+  color: $blue;
+  line-height: 1;
+  margin: 0 0 8px;
+
+  @media (min-width: 576px) { font-size: 7rem; }
+}
+
+.not-found-separator {
+  height: 2px;
+  background: linear-gradient(to right, transparent, $blue, transparent);
+  margin: 20px auto;
+  width: 60%;
+}
+
+.not-found-text {
+  font-size: 1rem;
+  color: $dark;
+  margin-bottom: 28px;
+
+  @media (min-width: 576px) { font-size: 1.1rem; }
+}
