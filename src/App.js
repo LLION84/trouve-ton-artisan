@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Category from './pages/Category';
 import Artisan from './pages/Artisan';
 import NotFound from './pages/NotFound';
+import Legal from './pages/Legal';
 
 // Composant racine — structure principale de l'application
 function App() {
@@ -18,10 +19,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/category/:name" element={<Category />} />
         <Route path="/artisan/:id" element={<Artisan />} />
-        <Route path="/mentions-legales" element={<NotFound />} />
-        <Route path="/donnees-personnelles" element={<NotFound />} />
-        <Route path="/accessibilite" element={<NotFound />} />
-        <Route path="/cookies" element={<NotFound />} />
+        <Route path="/mentions-legales" element={<Legal />} />
+        <Route path="/donnees-personnelles" element={<Legal />} />
+        <Route path="/accessibilite" element={<Legal />} />
+        <Route path="/cookies" element={<Legal />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
