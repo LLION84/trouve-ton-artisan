@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useState } from 'react';
 import artisans from '../artisans.json';
 import Stars from '../components/Stars';
+import emailjs from '@emailjs/browser';
 
 // Page fiche artisan — infos, à propos, formulaire de contact
 function Artisan() {
@@ -15,11 +16,25 @@ function Artisan() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = (e) => {
+  e.preventDefault();
+  
+  emailjs.send(
+    'service_xcsxdjo',
+    'template_sop9x8i',
+    {
+      nom: form.nom,
+      objet: form.objet,
+      message: form.message,
+    },
+    'awRQk-37qQq35y9ID'
+  ).then(() => {
     setSent(true);
     setForm({ nom: '', objet: '', message: '' });
-  };
+  }).catch(() => {
+    alert('Erreur lors de l\'envoi. Réessayez.');
+  });
+};
 
   if (!artisan) {
     return (
