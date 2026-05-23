@@ -49,3 +49,7 @@ npm run build
 ## Lien du site
 
 [https://artisans-auvergn.netlify.app](https://artisans-auvergn.netlify.app)
+
+## Auteur
+
+Mohamed Blaise — Formation développeur web
