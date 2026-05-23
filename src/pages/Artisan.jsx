@@ -21,7 +21,6 @@ function Artisan() {
     setForm({ nom: '', objet: '', message: '' });
   };
 
-  // Artisan introuvable
   if (!artisan) {
     return (
       <main className="py-5">
@@ -37,14 +36,13 @@ function Artisan() {
     <main className="artisan-page py-5" id="main-content">
       <div className="container">
 
-        {/* Bouton retour */}
         <Link to={-1} className="btn-retour mb-4 d-inline-flex">
           Retour
         </Link>
 
         <div className="row g-4">
 
-         {/* Infos artisan */}
+          {/* Infos artisan */}
           <div className="col-12 col-lg-4">
             <article className="artisan-card p-4 h-100">
               <Stars note={artisan.note} />
@@ -56,11 +54,11 @@ function Artisan() {
               </p>
               {artisan.website && (
                 <a>
-                  href={artisan.website || '#'}
+                  href={artisan.website}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="artisan-website"
-                  aria-label={`Site web de ${artisan.name}`}
+                  aria-label={`Visiter le site web de ${artisan.name}`}
                 
                   <i className="bi bi-globe me-1" aria-hidden="true"></i>
                   Voir le site web
@@ -81,7 +79,6 @@ function Artisan() {
           <div className="col-12 col-lg-4">
             <section className="artisan-card p-4 h-100" aria-labelledby="contact-title">
               <h2 id="contact-title">Contacter l'artisan</h2>
-
               {sent ? (
                 <div className="contact-success" role="alert">
                   <i className="bi bi-check-circle-fill me-2" aria-hidden="true"></i>
