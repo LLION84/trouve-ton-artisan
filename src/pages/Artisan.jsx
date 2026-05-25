@@ -23,9 +23,10 @@ function Artisan() {
     'service_xcsxdjo',
     'template_sop9x8i',
     {
-      nom: form.nom,
-      objet: form.objet,
+      name: form.nom,
+      title: form.objet,
       message: form.message,
+      from_name: form.nom,
     },
     'awRQk-37qQq35y9ID'
   ).then(() => {
@@ -68,17 +69,11 @@ function Artisan() {
                 {artisan.location}
               </p>
               {artisan.website && (
-                <a>
-                  href={artisan.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="artisan-website"
-                  aria-label={`Visiter le site web de ${artisan.name}`}
-                
-                  <i className="bi bi-globe me-1" aria-hidden="true"></i>
-                  Voir le site web
-                </a>
-              )}
+  <a href={artisan.website} target="_blank" rel="noopener noreferrer" className="artisan-website">
+    <i className="bi bi-globe me-1" aria-hidden="true"></i>
+    Voir le site web
+  </a>
+)}
             </article>
           </div>
 
